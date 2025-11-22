@@ -23,7 +23,7 @@ class Task extends StatelessWidget {
         onDismissed: onDismissed,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
+            borderRadius: BorderRadius.circular(50),
             color: Colors.deepPurple[400],
           ),
           child: Padding(
@@ -41,14 +41,16 @@ class Task extends StatelessWidget {
                     taskName.toUpperCase(),
                     style: TextStyle(
                       letterSpacing: 0.5,
-                      color: Colors.white,
+                      color: taskCompleted
+                          ? Colors.white.withAlpha(190)
+                          : Colors.white,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       decoration: taskCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
-                      decorationThickness: 1.5,
-                      decorationColor: Colors.white,
+                      decorationThickness: 2,
+                      decorationColor: Colors.white.withAlpha(150),
                     ),
                   ),
                 ),

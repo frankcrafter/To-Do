@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/models/task.dart';
+import 'package:todo_app/pages/empty_page.dart';
 import 'package:todo_app/utilities/my_textfield.dart';
 
 class HomePage extends StatefulWidget {
@@ -56,10 +57,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple[400],
+        foregroundColor: Colors.white,
         title: Text(
           "My To-Do List",
-          style: TextStyle(letterSpacing: 2, fontWeight: FontWeight.w300),
+          style: TextStyle(letterSpacing: 2, fontWeight: FontWeight.w400),
         ),
       ),
       body: Column(
@@ -68,84 +70,92 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsetsGeometry.fromLTRB(15, 15, 15, 15),
             child: MyTextField(controller: _controller, onPressed: onSave),
           ),
-          Padding(
-            padding: EdgeInsetsGeometry.fromLTRB(15, 0, 15, 15),
-            child: Container(
-              width: double.infinity,
-              height: 200,
-              decoration: BoxDecoration(
-                border: BoxBorder.all(width: 2, color: Colors.deepPurple[400]!),
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Padding(
-                padding: EdgeInsetsGeometry.fromLTRB(15, 15, 15, 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    //leftCenter(
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TweenAnimationBuilder<double>(
-                          tween: Tween<double>(begin: 0, end: getProgress()),
-                          duration: Duration(milliseconds: 350),
-                          builder: (context, value, child) {
-                            return Column(
-                              children: [
-                                Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    CircularProgressIndicator(
-                                      backgroundColor: Colors.grey[500],
-                                      constraints: BoxConstraints(
-                                        minWidth: 100,
-                                        minHeight: 100,
-                                      ),
-                                      value: value,
-                                    ),
-                                    Text(
-                                      "$percent%",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ],
+          taskList.isNotEmpty
+              ? Padding(
+                  padding: EdgeInsetsGeometry.fromLTRB(15, 0, 15, 15),
+                  child: Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      border: BoxBorder.all(
+                        width: 2.5,
+                        color: Colors.deepPurple[400]!,
+                      ),
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.fromLTRB(15, 15, 15, 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          //leftCenter(
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TweenAnimationBuilder<double>(
+                                tween: Tween<double>(
+                                  begin: 0,
+                                  end: getProgress(),
                                 ),
-                              ],
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    //right Center(
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "Total Task",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
+                                duration: Duration(milliseconds: 350),
+                                builder: (context, value, child) {
+                                  return Column(
+                                    children: [
+                                      Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          CircularProgressIndicator(
+                                            backgroundColor: Colors.grey[500],
+                                            constraints: BoxConstraints(
+                                              minWidth: 100,
+                                              minHeight: 100,
+                                            ),
+                                            value: value,
+                                          ),
+                                          Text(
+                                            "$percent%",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ],
                           ),
-                        ),
-                        Text(
-                          taskList.length.toString(),
-                          style: TextStyle(
-                            fontSize: 50,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.deepPurple[400],
+                          //right Center(
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                "Total Task",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Text(
+                                taskList.length.toString(),
+                                style: TextStyle(
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.deepPurple[400],
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+                  ),
+                )
+              : EmptyPage(),
           Expanded(
             child: ListView.builder(
               itemCount: taskList.length,
