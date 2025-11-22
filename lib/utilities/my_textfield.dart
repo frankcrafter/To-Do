@@ -18,7 +18,7 @@ class MyTextField extends StatelessWidget {
           child: TextField(
             controller: controller,
             decoration: InputDecoration(
-              hintText: "What u doing today?",
+              hintText: "What you doing today?",
               hintStyle: TextStyle(color: Colors.grey[400]),
               contentPadding: EdgeInsetsGeometry.fromLTRB(20, 15, 20, 15),
               enabledBorder: OutlineInputBorder(

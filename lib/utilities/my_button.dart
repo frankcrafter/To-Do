@@ -15,8 +15,8 @@ class MyButton extends StatelessWidget {
       child: Padding(
         padding: EdgeInsetsGeometry.fromLTRB(5, 15, 5, 15),
         child: Text(
-          "+   Add",
-          style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.w700),
+          "+  Add",
+          style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.w500),
         ),
       ),
     );

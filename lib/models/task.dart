@@ -23,7 +23,7 @@ class Task extends StatelessWidget {
         onDismissed: onDismissed,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(3),
             color: Colors.deepPurple[400],
           ),
           child: Padding(
