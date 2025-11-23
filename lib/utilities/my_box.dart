@@ -20,6 +20,14 @@ class MyBox extends StatelessWidget {
         width: double.infinity,
         height: 200,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(100), // shadow color
+              blurRadius: 10,
+              spreadRadius: 1,
+              offset: Offset(0, 5),
+            ),
+          ],
           border: BoxBorder.all(width: 2.5, color: Colors.deepPurple[400]!),
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(30),

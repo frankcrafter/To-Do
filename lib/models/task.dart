@@ -28,13 +28,13 @@ class Task extends StatelessWidget {
               BoxShadow(
                 color: Colors.black.withAlpha(100), // shadow color
                 blurRadius: 10,
-                spreadRadius: 2,
+                spreadRadius: 1,
                 offset: Offset(0, 10),
               ),
             ],
           ),
           child: Padding(
-            padding: EdgeInsetsGeometry.fromLTRB(15, 15, 15, 15),
+            padding: EdgeInsetsGeometry.fromLTRB(15, 15, 25, 15),
             child: Row(
               children: [
                 Checkbox(
@@ -50,11 +50,10 @@ class Task extends StatelessWidget {
                   child: Text(
                     taskName.toUpperCase(),
                     style: TextStyle(
-                      letterSpacing: 0.5,
                       color: taskCompleted
                           ? Colors.white.withAlpha(150)
                           : Colors.white,
-                      fontSize: 15,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                       decoration: taskCompleted
                           ? TextDecoration.lineThrough
