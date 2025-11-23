@@ -35,8 +35,8 @@ class MyBox extends StatelessWidget {
                 children: [
                   TweenAnimationBuilder<double>(
                     tween: Tween<double>(begin: 0, end: getProgress(taskList)),
-                    duration: Duration(milliseconds: 700),
-                    curve: Curves.easeInOut,
+                    duration: Duration(milliseconds: 900),
+                    curve: Curves.fastEaseInToSlowEaseOut,
                     builder: (context, value, child) {
                       return Column(
                         children: [
@@ -44,7 +44,7 @@ class MyBox extends StatelessWidget {
                             alignment: Alignment.center,
                             children: [
                               CircularProgressIndicator(
-                                backgroundColor: Colors.grey[500],
+                                backgroundColor: Colors.grey[400],
                                 constraints: BoxConstraints(
                                   minWidth: 100,
                                   minHeight: 100,
@@ -56,6 +56,7 @@ class MyBox extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
+                                  color: Colors.blueGrey[700],
                                 ),
                               ),
                             ],
