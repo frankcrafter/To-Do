@@ -28,7 +28,7 @@ class Task extends StatelessWidget {
               BoxShadow(
                 color: Colors.black.withAlpha(100), // shadow color
                 blurRadius: 10, // soften the shadow
-                spreadRadius: 1, // extend the shadow
+                spreadRadius: 3, // extend the shadow
               ),
             ],
           ),
