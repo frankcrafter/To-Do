@@ -57,6 +57,9 @@ class MyBox extends StatelessWidget {
                                 color: Theme.of(
                                   context,
                                 ).colorScheme.inverseSurface,
+                                backgroundColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
                                 constraints: BoxConstraints(
                                   minWidth: 100,
                                   minHeight: 100,

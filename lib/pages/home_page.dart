@@ -82,18 +82,33 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
         actions: [
-          Switch(
-            activeThumbColor: Theme.of(context).colorScheme.inverseSurface,
-            activeTrackColor: Theme.of(context).colorScheme.primary,
-            inactiveThumbColor: Theme.of(context).colorScheme.inversePrimary,
-            value: Provider.of<ThemeProvider>(
-              context,
-              listen: false,
-            ).isDarkMode,
-            onChanged: (value) => Provider.of<ThemeProvider>(
-              context,
-              listen: false,
-            ).toggleTheme(),
+          Padding(
+            padding: EdgeInsetsGeometry.only(right: 15),
+            child: IconButton(
+              style: IconButton.styleFrom(
+                padding: EdgeInsetsGeometry.all(15),
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                side: BorderSide(
+                  width: 1,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              icon: Icon(
+                Theme.of(context).brightness == Brightness.dark
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
+                color: Theme.of(context).colorScheme.inverseSurface,
+              ),
+              onPressed: () {
+                Provider.of<ThemeProvider>(
+                  context,
+                  listen: false,
+                ).toggleTheme();
+              },
+            ),
           ),
         ],
         title: Text(
