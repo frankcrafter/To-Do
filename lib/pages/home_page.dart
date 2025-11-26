@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/data/database.dart';
 import 'package:todo_app/models/task.dart';
 import 'package:todo_app/pages/empty_page.dart';
 import 'package:todo_app/themes/theme_provider.dart';
@@ -15,34 +17,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _myBox = Hive.box("my_box");
+  ToDoDatabase db = ToDoDatabase();
+
+  @override
+  void initState() {
+    if (_myBox.get("TASKLIST") == null) {
+      db.createData();
+    } else {
+      db.loadData();
+    }
+    super.initState();
+  }
+
   final _controller = TextEditingController();
   final _updateController = TextEditingController();
-  late int taskAmount = taskList.length;
-
-  List taskList = [
-    ['coding new app', false],
-    ['do homework', true],
-    ['go to the gym', false],
-  ];
+  late int taskAmount = db.taskList.length;
 
   // checkbox
   void onChecked(int index, bool? value) {
     setState(() {
-      taskList[index][1] = !taskList[index][1];
+      db.taskList[index][1] = !db.taskList[index][1];
     });
+    db.updateData();
   }
 
-  // save task
+  // create task
   void onSave() {
     setState(() {
       if (_controller.text.isNotEmpty) {
-        taskList.add([_controller.text, false]);
+        db.taskList.add([_controller.text, false]);
         _controller.clear();
       }
     });
+    db.updateData();
   }
 
-  // edit task
+  // dialog for edit task
   void editTask(int index) {
     setState(() {
       showDialog(
@@ -56,13 +67,14 @@ class _HomePageState extends State<HomePage> {
         },
       );
     });
+    db.updateData();
   }
 
-  //update task
+  //edit task
   void updateTask(int index) {
     setState(() {
-      if (!taskList[index][1]) {
-        taskList[index][0] = _updateController.text;
+      if (!db.taskList[index][1]) {
+        db.taskList[index][0] = _updateController.text;
       }
       _updateController.clear();
     });
@@ -72,8 +84,9 @@ class _HomePageState extends State<HomePage> {
   // delete a task
   void deleteTask(int index) {
     setState(() {
-      taskList.removeAt(index);
+      db.taskList.removeAt(index);
     });
+    db.updateData();
   }
 
   @override
@@ -115,14 +128,14 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsetsGeometry.fromLTRB(15, 15, 15, 15),
             child: MyTextField(controller: _controller, onPressed: onSave),
           ),
-          taskList.isNotEmpty ? MyBox(taskList: taskList) : EmptyPage(),
+          db.taskList.isNotEmpty ? MyBox(taskList: db.taskList) : EmptyPage(),
           Expanded(
             child: ListView.builder(
-              itemCount: taskList.length,
+              itemCount: db.taskList.length,
               itemBuilder: (context, index) {
                 return Task(
-                  taskName: taskList[index][0],
-                  taskCompleted: taskList[index][1],
+                  taskName: db.taskList[index][0],
+                  taskCompleted: db.taskList[index][1],
                   onChanged: (value) => onChecked(index, value),
                   onDismissed: (direction) => deleteTask(index),
                   onPressed: () => editTask(index),
