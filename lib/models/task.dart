@@ -49,7 +49,7 @@ class Task extends StatelessWidget {
                     checkColor: Theme.of(context).colorScheme.inverseSurface,
                     side: BorderSide(
                       color: Theme.of(context).colorScheme.secondary,
-                      width: 1.5,
+                      width: 2,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
@@ -79,11 +79,13 @@ class Task extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: onPressed,
-                  icon: Icon(
-                    Icons.edit,
-                    color: Theme.of(context).colorScheme.secondary,
-                    size: 20,
-                  ),
+                  icon: !taskCompleted
+                      ? Icon(
+                          Icons.edit,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 20,
+                        )
+                      : Icon(null),
                 ),
               ],
             ),

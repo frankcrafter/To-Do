@@ -73,11 +73,12 @@ class _HomePageState extends State<HomePage> {
   //edit task
   void updateTask(int index) {
     setState(() {
-      if (!db.taskList[index][1]) {
+      if (!db.taskList[index][1] && _updateController.text.isNotEmpty) {
         db.taskList[index][0] = _updateController.text;
       }
       _updateController.clear();
     });
+    db.updateData();
     Navigator.of(context).pop();
   }
 
