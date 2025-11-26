@@ -65,15 +65,15 @@ class Task extends StatelessWidget {
                               context,
                             ).colorScheme.inversePrimary.withAlpha(150)
                           : Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
                       decoration: taskCompleted
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
                       decorationThickness: 2,
                       decorationColor: Theme.of(
                         context,
-                      ).colorScheme.inversePrimary.withAlpha(150),
+                      ).colorScheme.inversePrimary.withAlpha(170),
                     ),
                   ),
                 ),
