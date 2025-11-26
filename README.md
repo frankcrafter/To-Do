@@ -6,7 +6,7 @@ Built with a focus on simplicity, smooth UI, and fast performance.
 ## 🚀 Features
 - ➕ Add new tasks
 - ✔️ Mark tasks as completed
-- 🗑️ Delete tasks
+- 🗑️ Delete tasks (swiping to left)
 - 📱 Minimal UI
 - 🌓 Implement dark mode
 - 💾 Local storage (persistent tasks)
