@@ -13,9 +13,10 @@ Built with a focus on simplicity, smooth UI, and fast performance.
 
 ---
 
-## 📸 Screenshots
 ![image](./images/1.png)
 ![image](./images/2.png)
+
+---
 
 ## 🌱 Future Improvements
 
