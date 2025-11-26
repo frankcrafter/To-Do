@@ -90,6 +90,11 @@ class _HomePageState extends State<HomePage> {
     db.updateData();
   }
 
+  // update theme
+  void updateTheme() {
+    Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,12 +114,7 @@ class _HomePageState extends State<HomePage> {
                     : Icons.dark_mode,
                 color: Theme.of(context).colorScheme.inverseSurface,
               ),
-              onPressed: () {
-                Provider.of<ThemeProvider>(
-                  context,
-                  listen: false,
-                ).toggleTheme();
-              },
+              onPressed: updateTheme,
             ),
           ),
         ],
