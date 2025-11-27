@@ -77,16 +77,15 @@ class Task extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  onPressed: onPressed,
-                  icon: !taskCompleted
-                      ? Icon(
-                          Icons.edit,
-                          color: Theme.of(context).colorScheme.secondary,
-                          size: 20,
-                        )
-                      : Icon(null),
-                ),
+                if (!taskCompleted)
+                  IconButton(
+                    icon: Icon(
+                      Icons.edit,
+                      color: Theme.of(context).colorScheme.secondary,
+                      size: 20,
+                    ),
+                    onPressed: onPressed,
+                  ),
               ],
             ),
           ),
