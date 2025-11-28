@@ -17,76 +17,74 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsetsGeometry.fromLTRB(15, 0, 15, 15),
-      child: Dismissible(
-        key: Key(taskName),
-        direction: DismissDirection.endToStart,
-        onDismissed: onDismissed,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Theme.of(context).colorScheme.surface,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withAlpha(120), // shadow color
-                blurRadius: 10,
-                spreadRadius: 1,
-                offset: Offset(0, 10),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: EdgeInsetsGeometry.fromLTRB(15, 15, 20, 15),
-            child: Row(
-              children: [
-                Transform.scale(
-                  scale: 1.2,
-                  child: Checkbox(
+    return GestureDetector(
+      onTap: () {
+        if (onChanged != null) {
+          onChanged!(!taskCompleted);
+        }
+      },
+      child: Padding(
+        padding: EdgeInsetsGeometry.fromLTRB(15, 0, 15, 15),
+        child: Dismissible(
+          key: Key(taskName),
+          direction: DismissDirection.endToStart,
+          onDismissed: onDismissed,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: taskCompleted
+                  ? Theme.of(context).colorScheme.inverseSurface
+                  : Theme.of(context).colorScheme.surface,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withAlpha(120), // shadow color
+                  blurRadius: 3,
+                  spreadRadius: 0.05,
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: EdgeInsetsGeometry.fromLTRB(15, 15, 20, 15),
+              child: Row(
+                children: [
+                  Checkbox(
                     value: taskCompleted,
                     onChanged: onChanged,
-                    activeColor: Theme.of(context).colorScheme.surface,
-                    checkColor: Theme.of(context).colorScheme.inverseSurface,
+                    activeColor: Theme.of(context).colorScheme.inverseSurface,
+                    checkColor: Theme.of(context).colorScheme.surface,
                     side: BorderSide(
                       color: Theme.of(context).colorScheme.secondary,
                       width: 2,
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
+                  ),
+                  Expanded(
+                    child: Text(
+                      taskName.toUpperCase(),
+                      style: TextStyle(
+                        color: taskCompleted
+                            ? Theme.of(context).colorScheme.surface
+                            : Theme.of(context).colorScheme.inversePrimary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        decoration: taskCompleted
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        decorationThickness: 1,
+                        decorationColor: Theme.of(context).colorScheme.surface,
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Text(
-                    taskName.toUpperCase(),
-                    style: TextStyle(
-                      color: taskCompleted
-                          ? Theme.of(
-                              context,
-                            ).colorScheme.inversePrimary.withAlpha(150)
-                          : Theme.of(context).colorScheme.inversePrimary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                      decoration: taskCompleted
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
-                      decorationThickness: 2,
-                      decorationColor: Theme.of(
-                        context,
-                      ).colorScheme.inversePrimary.withAlpha(170),
+                  if (!taskCompleted)
+                    IconButton(
+                      icon: Icon(
+                        Icons.edit,
+                        color: Theme.of(context).colorScheme.secondary,
+                        size: 20,
+                      ),
+                      onPressed: onPressed,
                     ),
-                  ),
-                ),
-                if (!taskCompleted)
-                  IconButton(
-                    icon: Icon(
-                      Icons.edit,
-                      color: Theme.of(context).colorScheme.secondary,
-                      size: 20,
-                    ),
-                    onPressed: onPressed,
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -23,8 +23,7 @@ class MyBox extends StatelessWidget {
             BoxShadow(
               color: Colors.black.withAlpha(100),
               blurRadius: 10,
-              spreadRadius: 1,
-              offset: Offset(0, 5),
+              spreadRadius: 0.05,
             ),
           ],
           border: BoxBorder.all(
