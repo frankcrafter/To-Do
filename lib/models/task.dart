@@ -31,17 +31,22 @@ class Task extends StatelessWidget {
           onDismissed: onDismissed,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withAlpha(40),
+                  blurRadius: 20,
+                  spreadRadius: 1,
+                  offset: Offset(0, 20),
+                ),
+              ],
+              borderRadius: BorderRadius.circular(25),
               color: taskCompleted
                   ? Theme.of(context).colorScheme.inverseSurface
                   : Theme.of(context).colorScheme.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withAlpha(120), // shadow color
-                  blurRadius: 3,
-                  spreadRadius: 0.05,
-                ),
-              ],
+              border: BoxBorder.all(
+                width: 0.5,
+                color: Theme.of(context).colorScheme.surface,
+              ),
             ),
             child: Padding(
               padding: EdgeInsetsGeometry.fromLTRB(15, 15, 20, 15),
@@ -56,21 +61,26 @@ class Task extends StatelessWidget {
                       color: Theme.of(context).colorScheme.secondary,
                       width: 2,
                     ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                    ),
                   ),
                   Expanded(
-                    child: Text(
-                      taskName.toUpperCase(),
-                      style: TextStyle(
-                        color: taskCompleted
-                            ? Theme.of(context).colorScheme.surface
-                            : Theme.of(context).colorScheme.inversePrimary,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        decoration: taskCompleted
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
-                        decorationThickness: 1,
-                        decorationColor: Theme.of(context).colorScheme.surface,
+                    child: ListTile(
+                      title: Text(
+                        taskName,
+                        style: TextStyle(
+                          color: taskCompleted
+                              ? Theme.of(context).colorScheme.surface
+                              : Theme.of(context).colorScheme.inversePrimary,
+                          decoration: taskCompleted
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
+                          decorationThickness: 2,
+                          decorationColor: Theme.of(
+                            context,
+                          ).colorScheme.primary,
+                        ),
                       ),
                     ),
                   ),

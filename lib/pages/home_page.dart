@@ -131,17 +131,20 @@ class _HomePageState extends State<HomePage> {
           ),
           db.taskList.isNotEmpty ? MyBox(taskList: db.taskList) : EmptyPage(),
           Expanded(
-            child: ListView.builder(
-              itemCount: db.taskList.length,
-              itemBuilder: (context, index) {
-                return Task(
-                  taskName: db.taskList[index][0],
-                  taskCompleted: db.taskList[index][1],
-                  onChanged: (value) => onChecked(index, value),
-                  onDismissed: (direction) => deleteTask(index),
-                  onPressed: () => editTask(index),
-                );
-              },
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(top: 0),
+              child: ListView.builder(
+                itemCount: db.taskList.length,
+                itemBuilder: (context, index) {
+                  return Task(
+                    taskName: db.taskList[index][0],
+                    taskCompleted: db.taskList[index][1],
+                    onChanged: (value) => onChecked(index, value),
+                    onDismissed: (direction) => deleteTask(index),
+                    onPressed: () => editTask(index),
+                  );
+                },
+              ),
             ),
           ),
         ],
