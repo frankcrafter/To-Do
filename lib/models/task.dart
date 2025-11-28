@@ -36,7 +36,7 @@ class Task extends StatelessWidget {
                   color: Colors.black.withAlpha(40),
                   blurRadius: 20,
                   spreadRadius: 1,
-                  offset: Offset(0, 20),
+                  offset: Offset(0, 10),
                 ),
               ],
               borderRadius: BorderRadius.circular(25),
@@ -56,7 +56,7 @@ class Task extends StatelessWidget {
                     value: taskCompleted,
                     onChanged: onChanged,
                     activeColor: Theme.of(context).colorScheme.inverseSurface,
-                    checkColor: Theme.of(context).colorScheme.surface,
+                    checkColor: Colors.white,
                     side: BorderSide(
                       color: Theme.of(context).colorScheme.secondary,
                       width: 2,
@@ -71,15 +71,13 @@ class Task extends StatelessWidget {
                         taskName,
                         style: TextStyle(
                           color: taskCompleted
-                              ? Theme.of(context).colorScheme.surface
+                              ? Theme.of(context).colorScheme.tertiary
                               : Theme.of(context).colorScheme.inversePrimary,
                           decoration: taskCompleted
                               ? TextDecoration.lineThrough
                               : TextDecoration.none,
-                          decorationThickness: 2,
-                          decorationColor: Theme.of(
-                            context,
-                          ).colorScheme.primary,
+                          decorationThickness: 1.5,
+                          decorationColor: Colors.white,
                         ),
                       ),
                     ),

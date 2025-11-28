@@ -25,7 +25,7 @@ class MyBox extends StatelessWidget {
                   color: Colors.black.withAlpha(40),
                   blurRadius: 20,
                   spreadRadius: 1,
-                  offset: Offset(0, 20),
+                  offset: Offset(0, 10),
                 ),
               ],
               border: BoxBorder.all(
@@ -49,7 +49,7 @@ class MyBox extends StatelessWidget {
                           begin: 0,
                           end: getProgress(taskList),
                         ),
-                        duration: Duration(milliseconds: 1100),
+                        duration: Duration(milliseconds: 1500),
                         curve: Curves.fastEaseInToSlowEaseOut,
                         builder: (context, value, child) {
                           return Column(

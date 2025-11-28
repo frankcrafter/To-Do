@@ -28,7 +28,7 @@ class MyButton extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(40),
         ),
-        elevation: 5,
+        elevation: 1,
         backgroundColor: Theme.of(context).colorScheme.surface,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
